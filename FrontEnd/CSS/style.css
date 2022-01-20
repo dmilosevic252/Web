@@ -145,6 +145,12 @@ select{
     justify-content: center;
 
 }
+#drivercommands{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: left;  
+}
 .vehiclesState{
     display: flex;
     flex-direction: row;

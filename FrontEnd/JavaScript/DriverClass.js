@@ -16,7 +16,7 @@ export class DriverClass{
         document.body.style.backgroundImage="linear-gradient(to bottom,#ECECEC, #D2D2D2)";
 
         let title=document.createElement("h1");
-        title.className="buttonDiv";
+        title.className="clientName";
         title.innerHTML=this.driver.firstName+" "+this.driver.lastName;
         backgroundDiv.appendChild(title);
 
@@ -51,7 +51,7 @@ export class DriverClass{
         let pauseEndButton=document.createElement("button");
         pauseEndButton.id="pauseEnd";
         pauseEndButton.className="button";
-        pauseEndButton.innerHTML="Add Driver";
+        pauseEndButton.innerHTML="Pause/End shift";
         buttonDiv.appendChild(pauseEndButton);
         let endPauseListener=(event)=>this.PauseEndShift(this.driver.userName);
         pauseEndButton.addEventListener("click",endPauseListener,false);
