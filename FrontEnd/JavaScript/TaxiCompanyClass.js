@@ -16,7 +16,6 @@ export class TaxiCompanyClass{
 
         let title=document.createElement("h1");
         title.className="clientName";
-        console.log(this.taxiCompany.companyName)
         title.innerHTML=this.taxiCompany.companyName;
         backgroundDiv.appendChild(title);
 

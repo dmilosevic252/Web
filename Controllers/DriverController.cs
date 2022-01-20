@@ -40,7 +40,7 @@ namespace Web.Controllers
             {
                 Context.Drivers.Add(driver);
                 await Context.SaveChangesAsync();
-                return Ok(new {message="Driver added!"});                
+                return Ok(driver);                
             }
             catch(System.Exception e)
             {

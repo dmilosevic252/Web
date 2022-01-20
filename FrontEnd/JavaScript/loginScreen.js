@@ -131,8 +131,6 @@ function LoginClick()
         });
 }
 function RegisterClick(){
-
-    
     logButtonDiv.innerHTML="";
 
     registerButton.innerHTML="Create Account";

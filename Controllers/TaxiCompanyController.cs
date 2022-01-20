@@ -41,7 +41,7 @@ namespace Web.Controllers
             {
                 Context.TaxiCompanies.Add(taxiCompany);
                 await Context.SaveChangesAsync();
-                return Ok(new {message="Taxi Company added!"});                
+                return Ok(taxiCompany);                
             }
             catch(System.Exception e)
             {
