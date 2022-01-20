@@ -56,6 +56,15 @@ export class DriverClass{
         let endPauseListener=(event)=>this.PauseEndShift(this.driver.userName);
         pauseEndButton.addEventListener("click",endPauseListener,false);
 
+        //Start shift
+        let startButton=document.createElement("button");
+        startButton.id="startShift";
+        startButton.className="button";
+        startButton.innerHTML="Start shift";
+        buttonDiv.appendChild(startButton);
+        let startShiftListener=(event)=>this.StartShift(this.driver.userName);
+        startButton.addEventListener("click",startShiftListener,false);
+
 
 
         //Show current order
@@ -114,9 +123,30 @@ export class DriverClass{
                 alert(err);
             });
     }
+    StartShift(username){
+        fetch(`https://localhost:5001/Driver/ChangeDriverState/${username}/0`,{
+            headers:{
+                'Access-Token': 'token'
+            },
+            method:'PUT'})
+            .then(data=>{
+                if(data.ok){
+                    data.json().then(info=>{
+                        alert(info.message);
+                    });
+                }
+                else{
+                    data.json().then(info=>{
+                        alert(info.message);
+                    });
+                }
+            }).catch(err=>{
+                alert(err);
+            });
+    }
     Arrive(username){
 
-        fetch(`https://localhost:5001/Driver/ChangeDriverState/${username}/0`,{
+        fetch(`https://localhost:5001/Driver/Arrive/${username}`,{
             headers:{
                 'Access-Token': 'token'
             },

@@ -112,6 +112,27 @@ namespace Web.Controllers
             }  
         }
 
+        [Route("Arrive/{username}")]
+        [HttpPut]
+        public async Task<ActionResult> Arrive(string username){
+            Driver alreadyExists=await Context.Drivers.Where(p=>p.UserName==username).FirstOrDefaultAsync();
+            if(alreadyExists==null){
+                return BadRequest(new {message="The driver doesn't exist!"});
+            }
+            
+            Order o = await Context.Orders.Where(p=>p.Vehicle==alreadyExists.Vehicle && p.OrderState==OrderState.ACCEPTED).FirstOrDefaultAsync();
+            if(o!=null){
+                o.OrderState=OrderState.FINISHED;
+                alreadyExists.DriverState=DriverState.FREE;
+                await Context.SaveChangesAsync();
+                return Ok(new {message="Driver state updated!"});
+            }
+            else{
+                return BadRequest(new {message="Nowhere to arrive!"}); 
+            }
+        }
+
+
         [Route("LoginDriver/{username}/{password}")]
         [HttpGet]
         public async Task<ActionResult> LoginDriver(string username,string password){
