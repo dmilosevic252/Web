@@ -94,7 +94,6 @@ export class TaxiCompanyClass{
             method:'DELETE'})
             .then(data=>{
                 if(data.ok){
-                    //Promeni
                     root.innerHTML="";
                 }
                 else{
@@ -134,17 +133,9 @@ export class TaxiCompanyClass{
             },
             method:'GET'})
             .then(data=>{
-                if(data.ok){
-                    data.json().then(info=>{
-                        if(!draw) this.SetDropDown("Vehicle",presentationElement,info);
-                        else this.DrawVehicles(presentationElement,info);
-                    });
-                }
-                else{
-                    data.json().then(info=>{
-                        alert(info);
-                    });
-                }
+                data.json().then(info=>{
+                    alert(info.message);
+                });
             }).catch(err=>{
                 alert(err);
             });
@@ -189,16 +180,9 @@ export class TaxiCompanyClass{
             method:'POST',
             body: JSON.stringify(vehicle)})
             .then(data=>{
-                if(data.ok){
-                    data.json().then(info=>{
-                        alert(info);
-                    });
-                }
-                else{
-                    data.json().then(info=>{
-                        alert(info);
-                    });
-                }
+                data.json().then(info=>{
+                    alert(info.message);
+                });
             }).catch(err=>{
                 alert(err);
             });
@@ -211,13 +195,9 @@ export class TaxiCompanyClass{
             },
             method:'PUT'})
             .then(data=>{
-                if(data.ok){
-                    console.log(data);
-                   
-                }
-                else{
-                    alert(data);
-                }
+                data.json().then(info=>{
+                    alert(info.message);
+                });
             }).catch(err=>{
                 alert(err);
             });
@@ -231,13 +211,9 @@ export class TaxiCompanyClass{
             },
             method:'PUT'})
             .then(data=>{
-                if(data.ok){
-                    console.log(data);
-                   
-                }
-                else{
-                    alert(data);
-                }
+                data.json().then(info=>{
+                    alert(info.message);
+                });
             }).catch(err=>{
                 alert(err);
             });

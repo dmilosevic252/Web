@@ -39,11 +39,11 @@ namespace Web.Controllers
             {
                 Context.Orders.Add(order);
                 await Context.SaveChangesAsync();
-                return Ok("Order added!");                
+                return Ok(new {message="Order added!"});                
             }
             catch(System.Exception e)
             {
-                return BadRequest(e.Message);
+                return BadRequest(new {message=e.Message});
             }        
         }
 

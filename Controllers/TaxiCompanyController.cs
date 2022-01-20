@@ -123,7 +123,7 @@ namespace Web.Controllers
             TaxiCompany company=await Context.TaxiCompanies.Where(p=>p.UserName==username).FirstOrDefaultAsync();
             Vehicle v=await Context.Vehicles.Where(v=>v.VehicleName==vehicle.VehicleName && v.VehicleNumber==vehicle.VehicleNumber && v.TaxiCompany.UserName==username).FirstOrDefaultAsync();
             if(company==null){
-                return BadRequest("Taxi company doesn't exist!");
+                return BadRequest(new {message="Taxi company doesn't exist!"});
             }
             if(v!=null){
                 return BadRequest("Vehicle already exists!");
@@ -132,7 +132,7 @@ namespace Web.Controllers
                 vehicle.TaxiCompany=company;
                 Context.Vehicles.Add(vehicle);
                 await Context.SaveChangesAsync();
-                return Ok(new {vehicle.TaxiCompany.CompanyName}); 
+                return Ok(new {message="Vehicle added!"}); 
             }
             catch(System.Exception e){
                 return BadRequest(new {message=e.Message});
@@ -150,7 +150,7 @@ namespace Web.Controllers
                 );
             }
             catch(System.Exception e){
-                return BadRequest(e.Message);
+                return BadRequest(new {message=e.Message});
             }      
         }
 
@@ -163,7 +163,7 @@ namespace Web.Controllers
                 );
             }
             catch(System.Exception e){
-                return BadRequest(e.Message);
+                return BadRequest(new {message=e.Message});
             }      
         }
 
@@ -172,29 +172,29 @@ namespace Web.Controllers
         [HttpPut]
         public async Task<ActionResult> AddDriver(string taxiCompanyUserName,string driverUserName){
             if(driverUserName.Length<3 || driverUserName.Length>20){
-                return BadRequest("Drivers username in wrong format!");
+                return BadRequest(new {message="Drivers username in wrong format!"});
             }
             if(taxiCompanyUserName.Length<3 || taxiCompanyUserName.Length>20){
-                return BadRequest("Taxi username in wrong format!");
+                return BadRequest(new {message="Taxi username in wrong format!"});
             }
             Driver driver=await Context.Drivers.Where(p=>p.UserName==driverUserName).FirstOrDefaultAsync();
             TaxiCompany taxi=await Context.TaxiCompanies.Where(p=>p.UserName==taxiCompanyUserName).FirstOrDefaultAsync();
             if(taxi.Drivers.Contains(driver)){
-                return BadRequest("Driver already works for the company!");
+                return BadRequest(new {message="Driver already works for the company!"});
             }
             if(driver==null){
-                return BadRequest("Driver doesn't exist!");
+                return BadRequest(new {message="Driver doesn't exist!"});
             }
             if(taxi==null){
-                return BadRequest("Taxi company doesn't exist!");
+                return BadRequest(new {message="Taxi company doesn't exist!"});
             }
             try{
                 taxi.Drivers.Add(driver);
                 await Context.SaveChangesAsync();
-                return Ok("Driver added!");
+                return Ok(new {message="Driver added!"});
             }
             catch(System.Exception e){
-                return BadRequest(e.Message);
+                return BadRequest(new {message=e.Message});
             }      
         }
 
@@ -202,36 +202,36 @@ namespace Web.Controllers
         [HttpPut]
         public async Task<ActionResult> GiveDriverVehicle(string taxiCompanyUserName,string driverUserName,string vehicleName,int vehicleNumber){
             if(driverUserName.Length<3 || driverUserName.Length>20){
-                return BadRequest("Drivers username in wrong format!");
+                return BadRequest(new {message="Drivers username in wrong format!"});
             }
             if(taxiCompanyUserName.Length<3 || taxiCompanyUserName.Length>20){
-                return BadRequest("Taxi username in wrong format!");
+                return BadRequest(new {message="Taxi username in wrong format!"});
             }
             if(vehicleName.Length<3 || vehicleName.Length>30){
-                return BadRequest("Taxi username in wrong format!");
+                return BadRequest(new {message="Taxi username in wrong format!"});
             }
             
             Driver driver=await Context.Drivers.Where(p=>p.UserName==driverUserName).FirstOrDefaultAsync();
             Vehicle v=await Context.Vehicles.Where(v=>v.VehicleName==vehicleName && v.VehicleNumber==vehicleNumber && v.TaxiCompany.UserName==taxiCompanyUserName).FirstOrDefaultAsync();
             if(v.Driver.Count>0){
-                return BadRequest("Vehicle taken!");
+                return BadRequest(new {message="Vehicle taken!"});
             }
             if(v.Driver.Contains(driver)){
-                return BadRequest("Driver already drives that vehicle!");
+                return BadRequest(new {message="Driver already drives that vehicle!"});
             }
             if(driver==null){
-                return BadRequest("Driver doesn't exist!");
+                return BadRequest(new {message="Driver doesn't exist!"});
             }
             if(v==null){
-                return BadRequest("Vehicle doesn't exist!");
+                return BadRequest(new {message="Vehicle doesn't exist!"});
             }
             try{
                 driver.Vehicle=v;
                 await Context.SaveChangesAsync();
-                return Ok("Success!");
+                return Ok(new {message="Success!"});
             }
             catch(System.Exception e){
-                return BadRequest(e.Message);
+                return BadRequest(new {message=e.Message});
             }      
         }
 
