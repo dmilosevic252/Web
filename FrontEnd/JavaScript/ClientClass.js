@@ -105,6 +105,7 @@ export class ClientClass{
         
         taxiDiv.innerHTML="";
         vehicleDiv.innerHTML="";
+        finalInfoDiv.innerHTML="";
         
         var taxiSelect=document.createElement("select");
         taxiSelect.id="taxiSelect";
@@ -189,7 +190,7 @@ export class ClientClass{
     ChangedTaxi(){;
     
         vehicleDiv.innerHTML="";
-
+        finalInfoDiv.innerHTML="";
         var vehicleSelect=document.createElement("select");
         vehicleSelect.id="vehicleSelect";
         vehicleSelect.name="vehicle";
@@ -229,9 +230,6 @@ export class ClientClass{
     }
     ChangedVehicle(){
         finalInfoDiv.innerHTML="";
-
-        
-
         var startAdd=document.createElement("input");
         startAdd.id="startaddress";
         startAdd.className="inputField";

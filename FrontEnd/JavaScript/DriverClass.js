@@ -93,7 +93,7 @@ export class DriverClass{
             });
     }
     
-    PauseEndShift(userName){
+    PauseEndShift(username){
         fetch(`https://localhost:5001/Driver/ChangeDriverState/${username}/2`,{
             headers:{
                 'Access-Token': 'token'

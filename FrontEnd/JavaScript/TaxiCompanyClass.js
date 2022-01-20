@@ -94,6 +94,7 @@ export class TaxiCompanyClass{
             method:'DELETE'})
             .then(data=>{
                 if(data.ok){
+                    //Promeni
                     root.innerHTML="";
                 }
                 else{
@@ -133,9 +134,17 @@ export class TaxiCompanyClass{
             },
             method:'GET'})
             .then(data=>{
-                data.json().then(info=>{
-                    alert(info.message);
-                });
+                if(data.ok){
+                    data.json().then(info=>{
+                        if(!draw) this.SetDropDown("Vehicle",presentationElement,info);
+                        else this.DrawVehicles(presentationElement,info);
+                    });
+                }
+                else{
+                    data.json().then(info=>{
+                        alert(info);
+                    });
+                }
             }).catch(err=>{
                 alert(err);
             });
@@ -180,9 +189,16 @@ export class TaxiCompanyClass{
             method:'POST',
             body: JSON.stringify(vehicle)})
             .then(data=>{
-                data.json().then(info=>{
-                    alert(info.message);
-                });
+                if(data.ok){
+                    data.json().then(info=>{
+                        alert(info);
+                    });
+                }
+                else{
+                    data.json().then(info=>{
+                        alert(info);
+                    });
+                }
             }).catch(err=>{
                 alert(err);
             });
@@ -196,8 +212,8 @@ export class TaxiCompanyClass{
             method:'PUT'})
             .then(data=>{
                 data.json().then(info=>{
-                    alert(info.message);
-                });
+                        alert(info.message);
+                    });
             }).catch(err=>{
                 alert(err);
             });
@@ -211,9 +227,17 @@ export class TaxiCompanyClass{
             },
             method:'PUT'})
             .then(data=>{
-                data.json().then(info=>{
-                    alert(info.message);
-                });
+                if(data.ok){
+                    data.json().then(info=>{
+                        alert(info.message);
+                    });
+                   
+                }
+                else{
+                    data.json().then(info=>{
+                        alert(info.message);
+                    });
+                }
             }).catch(err=>{
                 alert(err);
             });
@@ -241,9 +265,10 @@ export class TaxiCompanyClass{
             for(var i=0;i<driversList.length;i++){
                 let option=document.createElement("li");
                 option.innerHTML=driversList[i].firstName+" "+driversList[i].lastName+" ("+driversList[i].userName+")";
-                if(driversList[i].driverState!=2){
-                    vehicleActive=true;
+                if(driversList[i].driverState<vehicleColor){
                     vehicleColor=driversList[i].driverState;
+                }
+                if(driversList[i].driverState!=2){
                     option.className="activeDriver";
                 }
                 else{

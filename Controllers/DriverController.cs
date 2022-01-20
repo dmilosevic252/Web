@@ -101,8 +101,8 @@ namespace Web.Controllers
             Order o = await Context.Orders.Where(p=>p.Vehicle==alreadyExists.Vehicle && p.OrderState==OrderState.ACCEPTED).FirstOrDefaultAsync();
             if(o!=null){
                 o.OrderState=OrderState.FINISHED;
-                await Context.SaveChangesAsync();
             }
+            await Context.SaveChangesAsync();
             try{
                 return Ok(new {message="Driver state updated!"});   
             }
