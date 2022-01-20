@@ -86,7 +86,7 @@ export class TaxiCompanyClass{
 
     DeleteAccount(username)
     {
-         fetch(`https://localhost:5001/Client/DeleteClient/${username}`,{
+         fetch(`https://localhost:5001/TaxiCompany/DeleteTaxiCompany/${username}`,{
             headers:{
                 'Access-Token': 'token'
             },
