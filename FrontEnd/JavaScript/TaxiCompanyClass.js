@@ -2,7 +2,6 @@ export class TaxiCompanyClass{
     
     constructor(taxiCompany){
         this.taxiCompany=taxiCompany;
-
     }
     
     WelcomeScreen(){
@@ -17,6 +16,7 @@ export class TaxiCompanyClass{
 
         let title=document.createElement("h1");
         title.className="clientName";
+        console.log(this.taxiCompany.companyName)
         title.innerHTML=this.taxiCompany.companyName;
         backgroundDiv.appendChild(title);
 
@@ -83,46 +83,6 @@ export class TaxiCompanyClass{
         addVehicleButton.addEventListener("click",vehicleListener,false);
         connectButton.addEventListener("click",connectListener,false);
         showVehiclesButton.addEventListener("click",showListener,false);
-        
-        
-
-
-        /*
-        let cityDiv=document.createElement("div");
-        cityDiv.id="cityDiv";
-        backgroundDiv.appendChild(cityDiv);
-
-        //Select city
-        var citySelect=document.createElement("select");
-        citySelect.id="citySelect";
-        citySelect.name="cities";
-        citySelect.addEventListener("change",this.ChangedCity);
-        this.GetCities();
-        let cityTitle=document.createElement("label");
-        cityTitle.className="formLabel";
-        cityTitle.innerHTML="City";
-        cityTitle.setAttribute("for","cities");
-        cityDiv.appendChild(cityTitle);
-        cityDiv.appendChild(citySelect);
-        
-
-        //Select taxi company
-        var taxiDiv=document.createElement("div");
-        taxiDiv.id="taxiDiv";
-        backgroundDiv.appendChild(taxiDiv);
-
-        //Select vehicle
-        var vehicleDiv=document.createElement("div");
-        vehicleDiv.id="vehicleDiv";
-        backgroundDiv.appendChild(vehicleDiv);
-
-        var finalInfoDiv= document.createElement("div");
-        finalInfoDiv.id="finalInfoDiv";
-        backgroundDiv.appendChild(finalInfoDiv);
-*/
-
-
-
     }
 
     DeleteAccount(username)

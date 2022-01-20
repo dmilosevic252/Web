@@ -202,7 +202,7 @@ function CreateAccount(){
             if(data.ok){
                 data.json().then(info=>{
                     console.log(info);
-                    ChangeScreen(info);
+                    ChangeScreen(userType,info);
                 });
             }
             else{

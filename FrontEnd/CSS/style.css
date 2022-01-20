@@ -30,8 +30,6 @@ div{
     font-size: 10vmin;
     color:aliceblue;
 }
-
-
 .inputField{
     margin:auto;
     margin-top:1%;
@@ -140,6 +138,7 @@ select{
     color: #1a1a1a;
 
 }
+
 #formDiv{
     display: flex;
     flex-direction: column;
